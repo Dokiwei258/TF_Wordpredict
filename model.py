@@ -13,7 +13,8 @@ class TransformerModel(nn.Module):
     self.model_type = 'Transformer'
     self.pos_encoder = PositionalEncodeing(d_model, dropout)
 
-    self.encoder_layers = TransformerEncoderLayer(d_model, nhead, d_hid, nlayers)
+    encoder_layers = TransformerEncoderLayer(d_model, nhead, d_hid, dropout)
+    self.encoder_layers = TransformerEncoder(encoder_layers, nlayers)
     self.embedding = nn.Embedding(ntoken, d_model)
     self.d_model = d.model
     self.linear = nn.Linear(d_model, ntoken)
