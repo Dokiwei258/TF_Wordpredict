@@ -1,4 +1,9 @@
 import time
+import dataset.py
+import model.py
+
+
+
 criterion = nn.CrossEntropyLoss()
 lr = 5.0
 
@@ -67,3 +72,9 @@ with TemporaryDirectory() as tempdir:
       torch.save(model.state_dict(), best_model_params_path)
 
   model.load_state_dict(torch.load(best_model_params_path))
+
+test_loss = evaluate(model, test_data)
+test_ppl = math.exp(test_loss)
+print('=' * 89)
+print(f'| End of training | test loss {test_loss:5.2f} |' f'test ppl {test_ppl:8.2f}')
+print('=' * 89)
