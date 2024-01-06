@@ -2,7 +2,17 @@ import time
 import dataset.py
 import model.py
 
+##init model
 
+ntokens = len(vocab)
+emsize = 200
+d_hid = 200
+nlayers = 6
+nhead = 8
+dropout = 0.1
+
+model = TransformerModel(ntokens, emsize, nhead, d_hid, nlayers, dropout).to(device)
+####
 
 criterion = nn.CrossEntropyLoss()
 lr = 5.0
